@@ -1,0 +1,73 @@
+﻿@page
+@model CHIWater.Models.House
+@using CHIWater.Models;
+
+@{
+    var House = new House();
+    House.AddTestData();
+}
+<script type="text/javascript">
+    function Speak(val) {
+        alert(val);
+    }
+</script>
+
+<div class="text-left">
+    <h1 class="display-4">Pets In the House</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Is Palindrome?
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Gender
+                </th>
+                <th>
+                    Age
+                </th>
+                <th>
+                    Wingspan
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in House)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @(item.IsNameAPalindrome? "True" : "False")
+                    </td>
+                    <td>
+                        @(item.GetType().Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @item.Wingspan
+                    </td>
+                    <td>
+                        <button ID="Speak" type="button" class="btndelete btn btn-xs btn-primary" OnClick="Speak('@(item.Speak())')">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Speak
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
